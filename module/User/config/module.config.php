@@ -1,4 +1,7 @@
 <?php
+
+namespace User;
+
 return array(
     'doctrine' => array(
         'driver' => array(
