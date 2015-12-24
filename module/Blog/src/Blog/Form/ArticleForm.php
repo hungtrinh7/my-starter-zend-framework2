@@ -25,7 +25,8 @@ class ArticleForm extends Form
             'type' => 'text',
             'name' => 'title',
             'options' => array(
-                'label' => 'Blog title'
+                'label' => 'Blog title',
+                'placeholder' => 'Title'
             )
         ));
 
