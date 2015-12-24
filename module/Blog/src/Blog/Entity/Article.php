@@ -31,25 +31,25 @@ class Article
     protected $id;
 
     /**
-     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
      * @return string
      */
     protected $title;
 
     /**
-     * @ORM\Column(name="content", type="string", length=255, nullable=true)
+     * @ORM\Column(name="content", type="string", length=255, nullable=false)
      * @return string
      */
     protected $content;
 
     /**
-     * @ORM\Column(name="author", type="string", length=255, nullable=true)
+     * @ORM\Column(name="author", type="string", length=255, nullable=false)
      * @return string
      */
     protected $author;
 
     /**
-     * @ORM\Column(name="date_created", type="datetime", nullable=true)
+     * @ORM\Column(name="date_created", type="datetime")
      * @return \DateTime
      */
     protected $dateCreated;
@@ -126,7 +126,6 @@ class Article
         $this->author = (isset($data['author'])) ? $data['author'] : null;
         $this->content  = (isset($data['content']))  ? $data['content']  : null;
         $this->title  = (isset($data['title']))  ? $data['title']  : null;
-        //$this->dateCreated  = (isset($data['dateCreated']))  ? $data['dateCreated']  : null;
     }
 
     public function getArrayCopy()
