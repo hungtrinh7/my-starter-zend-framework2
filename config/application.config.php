@@ -12,6 +12,7 @@ return array(
         'ZfcUser',
         'Application',
         'User',
+        'Blog', // demo
     ),
     'module_listener_options' => array(
         'module_paths' => array(

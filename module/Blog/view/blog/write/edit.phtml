@@ -1,0 +1,17 @@
+<h1>Edit article</h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('blog/edit', array(), true));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+echo $this->formCollection($form);
+?>
+
+<input type="submit" value="Valider">
+
+<?php
+
+echo $this->form()->closeTag();

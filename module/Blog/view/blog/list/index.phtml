@@ -1,0 +1,23 @@
+
+<h1>Articles</h1>
+
+<a href="<?php echo $this->url('blog/add', array('action' => 'add')); ?>">
+    Add
+</a>
+
+<div>
+    <h2>List articles</h2>
+
+    <?php foreach ($this->articles as $article): ?>
+        <article>
+            <h1 id="<?= $article->getId() ?>"><a href="<?php echo $this->url('blog/show', array('action' => 'show', 'id' => $article->getId())); ?>"> <?= $article->getTitle() ?></a></h1>
+            <p>
+                <?= $article->getContent() ?>
+            </p>
+        </article>
+    <?php endforeach ?>
+
+</div>
+
+
+

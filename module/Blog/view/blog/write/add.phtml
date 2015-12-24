@@ -1,0 +1,16 @@
+<h1>Add article</h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url());
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+echo $this->formCollection($form);
+?>
+
+<input type="submit" value="Add">
+
+<?php
+echo $this->form()->closeTag();

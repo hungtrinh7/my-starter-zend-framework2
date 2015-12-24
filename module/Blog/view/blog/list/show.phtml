@@ -1,0 +1,14 @@
+
+<h1><?php echo $article->getTitle() ?></h1>
+
+<a href="<?php echo $this->url('blog/edit', array('action' => 'edit', 'id' => $article->getId())); ?>">
+    Edit
+</a>
+
+<?php if($this->zfcUserIdentity()): ?>
+<a href="<?php echo $this->url('blog/delete', array('action' => 'delete', 'id' => $article->getId())); ?>">
+    Delete
+</a>
+<?php endif?>
+
+<p><?php echo $article->getContent() ?></p>
