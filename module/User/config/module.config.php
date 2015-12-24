@@ -20,7 +20,6 @@ return array(
     'view_manager' => array(
         'template_path_stack' => array(
             'user' => __DIR__ . '/../view',
-            // replace zfcUser templates
             'zfcuser' => __DIR__ . '/../view',
         ),
     ),
