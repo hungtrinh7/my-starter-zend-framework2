@@ -6,6 +6,6 @@
     '<?php echo $this->escapeHtml($this->article->getAuthor()); ?>'?
 </p>
 <form action="<?php echo $this->url('blog/delete', array(), true) ?>" method="post">
-    <input type="submit" name="delete_confirmation" value="yes">
-    <input type="submit" name="delete_confirmation" value="no">
+    <input type="submit" name="delete_confirmation" value="yes" class="btn btn-danger">
+    <input type="submit" name="delete_confirmation" value="no" class="btn btn-default">
 </form>
