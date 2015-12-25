@@ -6,11 +6,31 @@ $form->setAttribute('action', $this->url('blog/edit', array(), true));
 $form->prepare();
 
 echo $this->form()->openTag($form);
-
-echo $this->formCollection($form);
 ?>
 
-<input type="submit" value="Valider">
+<div class="form-group">
+    <?php
+    echo $this->formLabel($form->get('title')->setLabelAttributes(array('class' => 'control-label')));
+    echo $this->formInput($form->get('title')->setAttributes(array('class' => 'form-control', 'placeholder' => 'Title')));
+    echo $this->formElementErrors($form->get('title'), array('class' => 'help-inline'));
+    ?>
+</div>
+<div class="form-group">
+    <?php
+    echo $this->formLabel($form->get('author')->setLabelAttributes(array('class' => 'control-label')));
+    echo $this->formInput($form->get('author')->setAttributes(array('class' => 'form-control', 'placeholder' => 'Author')));
+    echo $this->formElementErrors($form->get('author'), array('class' => 'help-inline'));
+    ?>
+</div>
+<div class="form-group">
+    <?php
+    echo $this->formLabel($form->get('content')->setLabelAttributes(array('class' => 'control-label')));
+    echo $this->formTextarea($form->get('content')->setAttributes(array('class' => 'form-control', 'placeholder' => 'Content', 'rows' => '4')));
+    echo $this->formElementErrors($form->get('content'), array('class' => 'help-inline'));
+    ?>
+</div>
+
+<input type="submit" value="Edit" class="btn btn-default">
 
 <?php
 
