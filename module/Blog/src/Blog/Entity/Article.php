@@ -16,7 +16,6 @@ use Zend\InputFilter\InputFilterInterface;
 
 /**
  * Class Article
- * @ORM\Entity
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="Blog\Repository\ArticleRepository")
  */
