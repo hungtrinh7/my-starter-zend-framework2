@@ -94,16 +94,26 @@ class Article
     }
 
     /**
+     * Set author
+     *
+     * @param \User\Entity\User $author
      * @return Article
+     */
+    public function setAuthor(\User\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \User\Entity\User
      */
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    public function setAuthor($author)
-    {
-        $this->title = $author;
     }
 
     /**
