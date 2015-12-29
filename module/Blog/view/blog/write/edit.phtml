@@ -18,7 +18,7 @@ echo $this->form()->openTag($form);
 <div class="form-group">
     <?php
     echo $this->formLabel($form->get('author')->setLabelAttributes(array('class' => 'control-label')));
-    echo $this->formInput($form->get('author')->setAttributes(array('class' => 'form-control', 'placeholder' => 'Author')));
+    echo $this->formSelect($form->get('author')->setAttributes(array('class' => 'form-control')));
     echo $this->formElementErrors($form->get('author'), array('class' => 'help-inline'));
     ?>
 </div>
