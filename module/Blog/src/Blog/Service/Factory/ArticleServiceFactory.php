@@ -10,7 +10,7 @@ class ArticleServiceFactory implements FactoryInterface
 {
     /**
      * @param ServiceLocatorInterface $serviceLocator
-     * @return ArticleService
+     * @return ArticleRepository
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
