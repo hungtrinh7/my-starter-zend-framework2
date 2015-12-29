@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class User implements UserInterface
 {
     /**
-     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer", name="user_id")
      * @ORM\GeneratedValue(strategy="AUTO")
