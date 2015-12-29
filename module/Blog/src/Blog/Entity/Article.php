@@ -10,8 +10,6 @@ namespace Blog\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Factory as InputFactory;
-use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
 /**
@@ -22,38 +20,41 @@ use Zend\InputFilter\InputFilterInterface;
 class Article
 {
     /**
-     * @var integer $id
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
      * @return string
      */
-    protected $title;
+    private $title;
 
     /**
+     * @var string
+     *
      * @ORM\Column(name="content", type="string", length=255, nullable=false)
      * @return string
      */
-    protected $content;
+    private $content;
 
     /**
-     * @ORM\Column(name="author", type="string", length=255, nullable=false)
-     * @return string
+     * @ORM\ManyToOne(targetEntity="User\Entity\User")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="user_id")
      */
-    protected $author;
+    private $author;
 
     /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="date_created", type="datetime")
      * @return \DateTime
      */
-    protected $dateCreated;
+    private $dateCreated;
 
-    protected $inputFilter;
+    private $inputFilter;
 
     public function __construct()
     {
@@ -154,20 +155,6 @@ class Article
             $inputFilter->add(array(
                 'name'     => 'author',
                 'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
-                        ),
-                    ),
-                ),
             ));
 
             $inputFilter->add(array(

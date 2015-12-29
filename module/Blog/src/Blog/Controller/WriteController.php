@@ -36,7 +36,8 @@ class WriteController extends AbstractActionController
     public function addAction()
     {
         $em = $this->getEntityManager();
-        $form = new ArticleForm();
+        $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $form = new ArticleForm($entityManager);
 
         $request = $this->getRequest();
         if ($request->isPost()) {

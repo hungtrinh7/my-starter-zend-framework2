@@ -8,13 +8,18 @@
 
 namespace Blog\Form;
 
+use Doctrine\Common\Persistence\ObjectManager;
+use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use Zend\Form\Form;
 
-class ArticleForm extends Form
+class ArticleForm extends Form implements ObjectManagerAwareInterface
 {
-    public function __construct()
+    protected $objectManager;
+
+    public function __construct(ObjectManager $objectManager)
     {
         parent::__construct('article');
+        $this->setObjectManager($objectManager);
 
         $this->add(array(
             'type' => 'hidden',
@@ -39,11 +44,25 @@ class ArticleForm extends Form
         ));
 
         $this->add(array(
-            'type' => 'text',
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'author',
             'options' => array(
-                'label' => 'Author'
+                'label'             => 'Select',
+                'object_manager'    => $this->getObjectManager(),
+                'target_class'      => 'User\Entity\User',
+                'property'          => 'username',
+                'empty_option'   => '--- please choose ---',
             )
         ));
+    }
+
+    public function setObjectManager(ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
+    public function getObjectManager()
+    {
+        return $this->objectManager;
     }
 }
