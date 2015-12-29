@@ -36,8 +36,7 @@ class WriteController extends AbstractActionController
     public function addAction()
     {
         $em = $this->getEntityManager();
-        $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $form = new ArticleForm($entityManager);
+        $form = new ArticleForm($em);
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -47,6 +46,8 @@ class WriteController extends AbstractActionController
 
             if ($form->isValid()) {
                 $article->exchangeArray($form->getData());
+                $author = $em->getRepository('User\Entity\User')->findOneById($article->getAuthor());
+                $article->setAuthor($author);
                 $em->persist($article);
                 $em->flush();
 
@@ -78,7 +79,7 @@ class WriteController extends AbstractActionController
             return $this->redirect()->toRoute('blog', array('action' => 'add'));
         }
 
-        $form = new ArticleForm();
+        $form = new ArticleForm($em);
         $form->bind($article);
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -86,6 +87,8 @@ class WriteController extends AbstractActionController
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
+                $author = $em->getRepository('User\Entity\User')->findOneById($article->getAuthor());
+                $article->setAuthor($author);
                 $em->persist($article);
                 $em->flush();
 
