@@ -10,6 +10,7 @@ namespace Blog\Controller;
 
 use Blog\Entity\Article;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use Doctrine\ORM\EntityManager;
 
@@ -63,5 +64,31 @@ class ListController extends AbstractActionController
         return new ViewModel(array(
            'article' => $article,
         ));
+    }
+
+    /**
+     * test ajax
+     *
+     * @return \Zend\Stdlib\ResponseInterface
+     */
+    public function testAjaxAction()
+    {
+        $view = new ViewModel();
+        $view->setTemplate('blog/ajax/test.phtml')
+            ->setTerminal(true)
+            ->setVariables(array(
+                'name'  => $this->zfcUserAuthentication()->getIdentity()->getUsername(),
+            ));
+
+        $htmlOutput = $this->getServiceLocator()
+            ->get('viewrenderer')
+            ->render($view);
+
+        $jsonModel = new JsonModel();
+        $jsonModel->setVariables(array(
+            'html' => $htmlOutput,
+        ));
+
+        return $jsonModel;
     }
 }

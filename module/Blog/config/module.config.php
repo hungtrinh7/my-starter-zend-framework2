@@ -84,6 +84,21 @@ return array(
                                 'action'     => 'add'
                             )
                         )
+                    ),
+                    // test ajax
+                    'testAjax' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route'    => '/article/ajax',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Blog\Controller\List',
+                                'action'     => 'testAjax'
+                            )
+                        )
                     )
                 )
             )
@@ -102,6 +117,9 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
+        'strategies' => array(
+            'ViewJsonStrategy'
+        )
     ),
 
     'service_manager' => array(
