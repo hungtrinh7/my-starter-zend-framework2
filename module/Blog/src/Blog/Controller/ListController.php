@@ -73,11 +73,17 @@ class ListController extends AbstractActionController
      */
     public function testAjaxAction()
     {
+        if ($this->zfcUserAuthentication()->hasIdentity()) {
+            $name = $this->zfcUserAuthentication()->getIdentity()->getDisplayname();
+        } else {
+            $name = 'Guest';
+        }
+
         $view = new ViewModel();
         $view->setTemplate('blog/ajax/test.phtml')
             ->setTerminal(true)
             ->setVariables(array(
-                'name'  => $this->zfcUserAuthentication()->getIdentity()->getUsername(),
+                'name'  => $name,
             ));
 
         $htmlOutput = $this->getServiceLocator()
